@@ -16,12 +16,6 @@ sudo apt-get install -y openvpn
 
 echo "
 ###############################################################################
-###   Configure VirtualHere server for automatic startup
-###############################################################################
-"
-
-echo "
-###############################################################################
 ###   Remove old copies of VirtualHere server
 ###############################################################################
 "
@@ -49,7 +43,7 @@ mv -f ./vhusbdarm /usr/sbin
 
 echo "
 ###############################################################################
-###   Configure VirtualHere server for automatic startup
+###   Configure OpenVPN and VirtualHere server for automatic startup
 ###############################################################################
 "
 cat <<EOF > /etc/systemd/system/virtualhere.service
@@ -66,7 +60,9 @@ EOF
 
 systemctl daemon-reload
 systemctl enable openvpn
+systemctl enable virtualhere
 systemctl start openvpn
+systemctl start virtualhere
 
 echo "
 ###############################################################################
