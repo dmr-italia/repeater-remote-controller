@@ -16,6 +16,12 @@ sudo apt-get install -y openvpn
 
 echo "
 ###############################################################################
+###   Configure VirtualHere server for automatic startup
+###############################################################################
+"
+
+echo "
+###############################################################################
 ###   Remove old copies of VirtualHere server
 ###############################################################################
 "
@@ -43,6 +49,29 @@ mv -f ./vhusbdarm /usr/sbin
 
 echo "
 ###############################################################################
-###   Setup complete1
+###   Configure VirtualHere server for automatic startup
+###############################################################################
+"
+cat <<EOF > /etc/systemd/system/virtualhere.service
+Description=VirtualHere USB Sharing
+Requires=avahi-daemon.service
+After=avahi-daemon.service
+[Service]
+ExecStartPre=/bin/sh -c 'logger VirtualHere settling...;sleep 1s;logger VirtualHere settled'
+ExecStart=/usr/bin/vhusbdarm
+Type=idle
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable openvpn
+systemctl start openvpn
+
+echo "
+###############################################################################
+###   Setup complete!
+###   Now you should reboot your Raspberry PI with command:
+sudo reboot
 ###############################################################################
 "
