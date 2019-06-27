@@ -35,9 +35,14 @@ wget https://www.virtualhere.com/sites/default/files/usbserver/vhusbdarm
 
 echo "
 ###############################################################################
-###   Install VirtualHere server
+###   Install VirtualHere server into /usr/sbin folder
 ###############################################################################
 "
 chmod +x ./vhusbdarm
-mv ./vhusbdarm /usr/sbin
+mv -f ./vhusbdarm /usr/sbin
 
+echo "
+###############################################################################
+###   Setup complete1
+###############################################################################
+"
