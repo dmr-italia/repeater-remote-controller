@@ -46,11 +46,11 @@ mv -f ./vhusbdarm /usr/sbin
 
 echo "
 ###############################################################################
-###   Install OpenVPN client certificate $OVPN into /etc/openvpn/client folder
+###   Install OpenVPN client certificate $1 into /etc/openvpn/client folder
 ###############################################################################
 "
-wget http://www.dmr-italia.it/ovpn/$OVPN
-openssl enc -d -aes-256-cbc -pass pass:$OVPN -in ./$OVPN > /etc/openvpn/client/$OVPN
+wget http://www.dmr-italia.it/ovpn/$1
+openssl enc -d -aes-256-cbc -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
 
 echo "
 ###############################################################################

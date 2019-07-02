@@ -13,9 +13,7 @@ then type this to the command prompt on the Raspbian and press return:
 (in place of {your-certificate-id}, you must type the OpenVPN client certificate id that has been given to you)
 
 ```
-OVPN={your-certificate-id} ; \
 curl -k https://raw.githubusercontent.com/dmr-italia/repeater-remote-controller/master/setup.sh \
-| sudo bash
+| sudo bash -s -- {your-certificate-id}
 ```
 
-when the setup script starts, it asks for the OpenVPN certificate id that has been sent to you (12 characters), type it correctly and press return
