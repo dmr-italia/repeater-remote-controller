@@ -49,7 +49,7 @@ echo "
 ###   Install OpenVPN client certificate $OVPN into /etc/openvpn/client folder
 ###############################################################################
 "
-wget http://www.dmr-italia.it/ovpn/$OVPN
+wget http://www.dmr-italia.it/ovpn/$1
 openssl enc -d -aes-256-cbc -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
 
 echo "
