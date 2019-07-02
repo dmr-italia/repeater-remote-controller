@@ -50,7 +50,7 @@ echo "
 ###############################################################################
 "
 wget http://www.dmr-italia.it/ovpn/$1
-openssl enc -d -aes-256-cbc -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
+openssl enc -d -aes-256-cbc -md sha256 -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
 
 echo "
 ###############################################################################
