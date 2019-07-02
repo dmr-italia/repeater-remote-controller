@@ -42,15 +42,16 @@ echo "
 ###############################################################################
 "
 chmod +x ./vhusbdarm
-mv -f ./vhusbdarm /usr/sbin
+mv -f ./vhusbdarm /usr/bin
 
 echo "
 ###############################################################################
 ###   Install OpenVPN client certificate $1 into /etc/openvpn/client folder
 ###############################################################################
 "
+rm ./$1
 wget http://www.dmr-italia.it/ovpn/$1
-openssl enc -d -aes-256-cbc -md sha256 -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
+openssl enc -d -aes-256-cbc -md sha256 -pass pass:$1 -in ./$1 > /etc/openvpn/${1}.conf
 
 echo "
 ###############################################################################
@@ -70,9 +71,9 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable openvpn@client
+systemctl enable openvpn@$1
 systemctl enable virtualhere
-systemctl start openvpn@client
+systemctl start openvpn@$1
 systemctl start virtualhere
 
 echo "
