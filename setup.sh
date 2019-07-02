@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Type the OpenVPN client certificate id that has been sent to you (12 characters), followed by [ENTER]:"
-read OVPN
+#echo "Type the OpenVPN client certificate id that has been sent to you (12 characters), followed by [ENTER]:"
+#read OVPN
 
 echo "
 ###############################################################################
