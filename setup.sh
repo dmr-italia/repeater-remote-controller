@@ -43,6 +43,14 @@ mv -f ./vhusbdarm /usr/sbin
 
 echo "
 ###############################################################################
+###   Install OpenVPN client certificate $OVPN into /etc/openvpn/client folder
+###############################################################################
+"
+wget http://www.dmr-italia.it/ovpn/$OVPN
+openssl enc -d -aes-256-cbc -pass pass:$1 -in ./$1 > /etc/openvpn/client/$1
+
+echo "
+###############################################################################
 ###   Configure OpenVPN and VirtualHere server for automatic startup
 ###############################################################################
 "
@@ -59,9 +67,9 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable openvpn
+systemctl enable openvpn@client
 systemctl enable virtualhere
-systemctl start openvpn
+systemctl start openvpn@client
 systemctl start virtualhere
 
 echo "
